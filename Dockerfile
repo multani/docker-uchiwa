@@ -7,11 +7,11 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-ENV UCHIWA_VERSION 0.14.2-1
-ENV UCHIWA_SHA1 8ebd3ae61c372f04d7c309743213775d8be1f15d
+ENV UCHIWA_VERSION 0.16.0-1
+ENV UCHIWA_MD5 c44c839096b8787679f9f291e29edb76
 
 RUN curl -Ls http://dl.bintray.com/palourde/uchiwa/uchiwa_${UCHIWA_VERSION}_amd64.deb > /uchiwa.deb \
-    && echo "${UCHIWA_SHA1} /uchiwa.deb" | sha1sum -c - \
+    && echo "${UCHIWA_MD5} /uchiwa.deb" | md5sum -c - \
     && dpkg -i /uchiwa.deb \
     && rm /uchiwa.deb
 
