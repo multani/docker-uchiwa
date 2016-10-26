@@ -28,4 +28,6 @@ RUN curl -Ls http://dl.bintray.com/palourde/uchiwa/uchiwa_${UCHIWA_VERSION}_amd6
 EXPOSE 3000
 
 COPY consul-template.cfg config.json.ctmpl /data/
-CMD consul-template -config /data/consul-template.cfg -consul ${CONSUL_ADDR}
+COPY run.sh /
+
+CMD /run.sh
