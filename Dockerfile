@@ -7,8 +7,15 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-ENV UCHIWA_VERSION 0.16.0-1
-ENV UCHIWA_MD5 c44c839096b8787679f9f291e29edb76
+
+ENV DUMB_INIT_VERSION 1.2.0
+
+RUN curl -Ls https://github.com/Yelp/dumb-init/releases/download/v${DUMB_INIT_VERSION}/dumb-init_${DUMB_INIT_VERSION}_amd64.deb > /dumb-init.deb\
+    && dpkg -i /dumb-init.deb \
+    && rm /dumb-init.deb
+
+ENV UCHIWA_VERSION 0.21.0-1
+ENV UCHIWA_MD5 920ca35674cbe31f8b43f5b5dce018e7
 
 RUN curl -Ls http://dl.bintray.com/palourde/uchiwa/uchiwa_${UCHIWA_VERSION}_amd64.deb > /uchiwa.deb \
     && echo "${UCHIWA_MD5} /uchiwa.deb" | md5sum -c - \
